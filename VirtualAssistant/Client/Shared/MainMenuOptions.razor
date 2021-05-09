@@ -1,0 +1,53 @@
+﻿
+<button class="btn-info" @onclick="@(()=> ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
+<button class="btn-info" @onclick="@(()=> ShowAccreditation = !ShowAccreditation)">Accreditation</button>
+<button class="btn-info" @onclick="@(()=> ShowElearning = !ShowElearning)">eLearning</button>
+<button class="btn-info" @onclick="@(()=> ShowOther = !ShowOther)">Other</button>
+
+@if (ShowTrainingMaterial)
+{
+    <TrainingMaterial DisplayAccreditationButtons="true"></TrainingMaterial>
+    ResetState();
+}
+@if (ShowAccreditation)
+{
+    <p>ShowingAccreditation</p>
+    ResetState();
+}
+@if (ShowElearning)
+{
+    <p>ShowingElearning</p>
+    ResetState();
+}
+@if (ShowOther)
+{
+    <p>ShowingOther</p>
+    ResetState();
+}
+
+@code {
+
+    protected async Task NewMenuSelected(ChangeEventArgs e)
+    {
+        await OnNewMenuDisplay.InvokeAsync((bool)e.Value);
+    }
+    public EventCallback<bool> OnNewMenuDisplay { get; set; }
+
+
+
+
+    public bool ShowTrainingMaterial { get; set; }
+    public bool ShowAccreditation { get; set; }
+    public bool ShowElearning { get; set; }
+    public bool ShowOther { get; set; }
+
+    void ResetState()
+    {
+        ShowTrainingMaterial = false;
+        ShowAccreditation = false;
+        ShowElearning = false;
+        ShowOther = false;
+    }
+
+
+}
