@@ -1,13 +1,18 @@
-﻿
-<button class="btn-info" @onclick="@(()=> ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
-<button class="btn-info" @onclick="@(()=> ShowAccreditation = !ShowAccreditation)">Accreditation</button>
-<button class="btn-info" @onclick="@(()=> ShowElearning = !ShowElearning)">eLearning</button>
-<button class="btn-info" @onclick="@(()=> ShowOther = !ShowOther)">Other</button>
+﻿@using VirtualAssistant.Shared.Models
+
+@if (ShowMainMenu)
+{
+    <button class="btn-info" @onclick="@(() => ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
+    <button class="btn-info" @onclick="@(() => ShowAccreditation = !ShowAccreditation)">Accreditation</button>
+    <button class="btn-info" @onclick="@(() => ShowElearning = !ShowElearning)">eLearning</button>
+    <button class="btn-info" @onclick="@(() => ShowOther = !ShowOther)">Other</button>
+}
 
 @if (ShowTrainingMaterial)
 {
-    <TrainingMaterial DisplayAccreditationButtons="true"></TrainingMaterial>
-    ResetState();
+    <TrainingMaterial ShowMainMenu="false" ActiveUser="ActiveUser" DisplayAccreditationButtons="true"></TrainingMaterial>
+    
+    ResetState(); 
 }
 @if (ShowAccreditation)
 {
@@ -26,6 +31,12 @@
 }
 
 @code {
+    [Parameter]
+    public User ActiveUser { get; set; }
+    
+    [Parameter]
+    public bool ShowMainMenu { get; set; } = false;
+
 
     protected async Task NewMenuSelected(ChangeEventArgs e)
     {

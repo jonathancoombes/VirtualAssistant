@@ -1,19 +1,21 @@
 ﻿@using VirtualAssistant.Shared.Models
-<h3>TrainingMaterial</h3>
+@using System.Reflection.Metadata
+
 @if (DisplayAccreditationButtons)
 {
-    ShowMenu=false;
+   
     <p>
         Ok, let me see how I can assist you with your training material needs.
         Is your company already Accredited as a Training Provider? 
-        <button class="btn-info">Yes</button> <button class="btn-info">No</button>
+        <button class="btn-info" @onclick="() => ActiveUser.Accredited = true">Yes</button> <button class="btn-info" @onclick="()=> ActiveUser.Accredited = false">No</button>
     </p>
+   
 }
 
 @code {
 
     [Parameter]
-    public User ActiveUser { get; set; }
+    public User ActiveUser { get; set; } 
 
     [Parameter]
 
@@ -27,6 +29,7 @@
     [Parameter]
     public EventCallback<TrainingMaterial> DeleteMaterial { get; set; }
 
-    public bool ShowMenu { get; set; }
+    [Parameter]
+    public bool ShowMainMenu { get; set; }
 
 }

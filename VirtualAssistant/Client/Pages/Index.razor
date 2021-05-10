@@ -2,6 +2,7 @@
 @using VirtualAssistant.Shared.Models
 <img src="images/va.PNG" width="200">
 <p>Welcome to <strong>Training Development Services!</strong></p>
+
 @if (String.IsNullOrEmpty(NewUser1.FirstName))
 {
     <div>
@@ -9,14 +10,14 @@
         <input @bind="NewUser1.FirstName" name="hi1" type="text" placeholder="enter first name"/>
     </div>
 }
-    @if (!String.IsNullOrEmpty(NewUser1.FirstName) && (ShowMenu))
+    @if (!String.IsNullOrEmpty(NewUser1.FirstName) && (ShowMainMenu))
     {
         <div>Hi <strong>@NewUser1.FirstName </strong> and welcome! How can I help you today?</div><br/>
-        <MainMenuOptions></MainMenuOptions>
-        ShowMenu=false;
+        <MainMenuOptions   ShowMainMenu="true" ActiveUser="NewUser1"></MainMenuOptions>
+        
     }
     @code
     {
      public User NewUser1 = new User();
-     public bool ShowMenu { get; set; } = true;
+     public bool ShowMainMenu { get; set; } = true;
     }
