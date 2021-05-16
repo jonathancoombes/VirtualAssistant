@@ -29,36 +29,3 @@
     <p>ShowingOther</p>
     ResetState();
 }
-
-@code {
-    [Parameter]
-    public User ActiveUser { get; set; }
-    
-    [Parameter]
-    public bool ShowMainMenu { get; set; } = false;
-
-
-    protected async Task NewMenuSelected(ChangeEventArgs e)
-    {
-        await OnNewMenuDisplay.InvokeAsync((bool)e.Value);
-    }
-    public EventCallback<bool> OnNewMenuDisplay { get; set; }
-
-
-
-
-    public bool ShowTrainingMaterial { get; set; }
-    public bool ShowAccreditation { get; set; }
-    public bool ShowElearning { get; set; }
-    public bool ShowOther { get; set; }
-
-    void ResetState()
-    {
-        ShowTrainingMaterial = false;
-        ShowAccreditation = false;
-        ShowElearning = false;
-        ShowOther = false;
-    }
-
-
-}

@@ -1,5 +1,6 @@
 ﻿@using VirtualAssistant.Shared.Models
 @using System.Reflection.Metadata
+@using System.Security.Cryptography.X509Certificates
 
 @if (DisplayAccreditationButtons)
 {
@@ -7,29 +8,7 @@
     <p>
         Ok, let me see how I can assist you with your training material needs.
         Is your company already Accredited as a Training Provider? 
-        <button class="btn-info" @onclick="() => ActiveUser.Accredited = true">Yes</button> <button class="btn-info" @onclick="()=> ActiveUser.Accredited = false">No</button>
+        <button class="btn-info" @onclick="@Accredited">Yes</button> <button class="btn-info" @onclick="()=> ActiveUser.Accredited = false">No</button>
     </p>
    
-}
-
-@code {
-
-    [Parameter]
-    public User ActiveUser { get; set; } 
-
-    [Parameter]
-
-    public TrainingMaterial Material { get; set; }
-
-    public bool DisplayMaterialButtons { get; set; } = false;
-
-    [Parameter]
-    public bool DisplayAccreditationButtons { get; set; }
-
-    [Parameter]
-    public EventCallback<TrainingMaterial> DeleteMaterial { get; set; }
-
-    [Parameter]
-    public bool ShowMainMenu { get; set; }
-
 }

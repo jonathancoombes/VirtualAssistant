@@ -1,6 +1,7 @@
 ﻿@page "/"
-@using VirtualAssistant.Shared.Models
+
 <img src="images/va.PNG" width="200">
+
 <p>Welcome to <strong>Training Development Services!</strong></p>
 
 @if (String.IsNullOrEmpty(NewUser1.FirstName))
@@ -15,9 +16,4 @@
         <div>Hi <strong>@NewUser1.FirstName </strong> and welcome! How can I help you today?</div><br/>
         <MainMenuOptions   ShowMainMenu="true" ActiveUser="NewUser1"></MainMenuOptions>
         
-    }
-    @code
-    {
-     public User NewUser1 = new User();
-     public bool ShowMainMenu { get; set; } = true;
     }

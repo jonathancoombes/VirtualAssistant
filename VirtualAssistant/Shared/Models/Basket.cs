@@ -11,6 +11,10 @@ namespace VirtualAssistant.Shared.Models
     public class Basket : IBasketRepositoryService
     {
         public int BasketId { get; set; }
+
+        public bool? TrainingMaterialInterest { get; set; } = null;
+        public bool? AccreditationInterest { get; set; } = null;
+        public bool? ELearningInterest { get; set; } = null;
         
         public Hashtable TrainingMaterialItems { get; set; }
         public Hashtable AccreditationItems { get; set; }

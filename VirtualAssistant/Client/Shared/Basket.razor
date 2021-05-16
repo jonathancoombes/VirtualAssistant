@@ -1,21 +1,5 @@
 ﻿@using VirtualAssistant.Shared.Models
-@inject IBasketRepositoryService BasketService
-
+ @*@inject IBasketRepositoryService BasketService*@
 <h3>Basket</h3>
 
 
-
-@code {
-    
-
-    [Parameter]
-    public Basket MainBasket { get; set; }
-
-    [Parameter]
-
-    public bool DisplayButtons { get; set; }
-
-    [Parameter]
-    public EventCallback<TrainingMaterial> EventCallback { get; set; }
-
-}
