@@ -12,9 +12,11 @@ namespace VirtualAssistant.Shared.Models
     {
         public int BasketId { get; set; }
 
-        public bool? TrainingMaterialInterest { get; set; } = null;
-        public bool? AccreditationInterest { get; set; } = null;
-        public bool? ELearningInterest { get; set; } = null;
+        public bool? TrainingMaterialInterest { get; set; }
+        public bool? AccreditationInterest { get; set; }
+        public bool? AccreditationAssistance { get; set; }
+
+        public bool? ELearningInterest { get; set; }
         
         public Hashtable TrainingMaterialItems { get; set; }
         public Hashtable AccreditationItems { get; set; }

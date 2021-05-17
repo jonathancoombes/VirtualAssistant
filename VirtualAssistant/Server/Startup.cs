@@ -25,7 +25,7 @@ namespace VirtualAssistant.Server
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddScoped<IBasketRepositoryService, Basket>();
+           // services.AddScoped<IBasketRepositoryService, Basket>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

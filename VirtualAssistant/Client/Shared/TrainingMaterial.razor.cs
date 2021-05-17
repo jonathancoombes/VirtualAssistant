@@ -9,19 +9,36 @@ namespace VirtualAssistant.Client.Shared
 {
     public partial class TrainingMaterial
     {
-        [CascadingParameter] public Basket TheBasket { get; set; }
+       [Parameter] public IBasketRepositoryService TheBasket { get; set; }
 
         void Accredited()
         {
-            TheBasket.
             ShowAccreditationStatusRequest = false;
-
+            DisplayAccreditationAssistanceButtons = false;
+            DisplayAccreditationStatusButtons = false;
+            TheBasket.AccreditationInterest = false;
+            //Continue
         }
         void NotAccredited()
         {
-
-
+            DisplayAccreditationAssistanceButtons = true;
             ShowAccreditationStatusRequest = false;
+            DisplayAccreditationStatusButtons = false;
+            StateHasChanged();
+
+        }
+
+        void DoesNeedAccreditationAssistance()
+        {
+           TheBasket.AccreditationAssistance = true;
+           ShowAccreditationStatusRequest = false;
+           DisplayAccreditationAssistanceButtons = true;
+        }
+        void DoesNotNeedAccreditationAssistance()
+        {
+            TheBasket.AccreditationAssistance = false;
+            DisplayAccreditationAssistanceButtons = false;
+            TheBasket.AccreditationInterest = false;
 
         }
         public bool ShowAccreditationStatusRequest { get; set; }
@@ -34,7 +51,9 @@ namespace VirtualAssistant.Client.Shared
     public TrainingMaterial Material { get; set; }
 
     [Parameter]
-    public bool DisplayAccreditationButtons { get; set; }
+    public bool DisplayAccreditationStatusButtons { get; set; }
+
+    public bool DisplayAccreditationAssistanceButtons { get; set; } = false;
 
     [Parameter]
     public EventCallback<TrainingMaterial> DeleteMaterial { get; set; }

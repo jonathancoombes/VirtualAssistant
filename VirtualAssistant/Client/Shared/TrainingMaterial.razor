@@ -2,13 +2,33 @@
 @using System.Reflection.Metadata
 @using System.Security.Cryptography.X509Certificates
 
-@if (DisplayAccreditationButtons)
-{
-   
+
+@if (DisplayAccreditationStatusButtons && !DisplayAccreditationAssistanceButtons)
+{<br /><br />
     <p>
         Ok, let me see how I can assist you with your training material needs.
-        Is your company already Accredited as a Training Provider? 
-        <button class="btn-info" @onclick="@Accredited">Yes</button> <button class="btn-info" @onclick="()=> ActiveUser.Accredited = false">No</button>
+        Is your company already Accredited as a Training Provider? <br /><br />
+        <button class="btn-info" @onclick="@Accredited">Yes</button>
+        <button class="btn-info" @onclick="@NotAccredited">No</button>
     </p>
-   
+}
+@if (DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons)
+{<br /><br />
+    <p>
+        Ok great!
+        Do you require assistance to become Accredited as a Training Provider? <br /><br />
+        <button class="btn-info" @onclick="@DoesNeedAccreditationAssistance">Yes</button>
+        <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">No</button>
+    </p>
+}
+@if (!DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons)
+{<br /><br />
+<p>
+    Ok thanks!
+    Please select which type of Training Materials do you require from the options below. <br /><br />
+    <button class="btn-info" @onclick="@DoesNeedAccreditationAssistance">SETA Qualifications / Units</button>
+    <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">QCTO Qualifications / Modules</button>
+    <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">eLearning Materials / System</button>
+    <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">Other / Non NQF</button>
+</p>
 }

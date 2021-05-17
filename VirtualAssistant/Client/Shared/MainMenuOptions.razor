@@ -1,4 +1,5 @@
 ﻿@using VirtualAssistant.Shared.Models
+@inject IBasketRepositoryService TBasket
 
 @if (ShowMainMenu)
 {
@@ -10,7 +11,7 @@
 
 @if (ShowTrainingMaterial)
 {
-    <TrainingMaterial ShowMainMenu="false" ActiveUser="ActiveUser" DisplayAccreditationButtons="true"></TrainingMaterial>
+    <TrainingMaterial  TheBasket="TBasket"  DisplayAccreditationStatusButtons="true" ShowMainMenu="false" ActiveUser="ActiveUser" ></TrainingMaterial>
     
     ResetState(); 
 }
