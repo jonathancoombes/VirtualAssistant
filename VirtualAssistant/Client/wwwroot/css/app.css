@@ -48,3 +48,29 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+.lights {
+    padding: 1em;
+    border: 1px solid grey;
+    width: 6em;
+    background-color: #343a40;
+}
+
+.lights div {
+    margin-bottom: 0.5em;
+    border: 2px solid grey;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+}
+
+div.red.on {
+    background-color: red;
+}
+
+div.amber.on {
+    background-color: orange;
+}
+
+div.green.on {
+    background-color: green;
+}

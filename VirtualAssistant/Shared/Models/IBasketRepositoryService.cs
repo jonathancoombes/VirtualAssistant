@@ -11,6 +11,9 @@ namespace VirtualAssistant.Shared.Models
         public bool? AccreditationInterest { get; set; }
         public bool? AccreditationAssistance { get; set; }
         public bool? ELearningInterest { get; set; }
+        public bool? SetaMaterialInterest { get; set; }
+        public bool? QctoMaterialInterest { get; set; }
+        public bool? OtherMaterialInterest { get; set; }
 
         void DeleteBasketItem<T>(T item);
         public void AddBasketItem<T>(T item);

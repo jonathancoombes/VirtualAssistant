@@ -1,15 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using VirtualAssistant.Shared.Models;
 
 namespace VirtualAssistant.Client.Shared
 {
-    public partial class TrainingMaterial
+    public partial class TrainingMaterial 
     {
-       [Parameter] public IBasketRepositoryService TheBasket { get; set; }
+        [Parameter] public IBasketRepositoryService TheBasket { get; set; }
+        public string buttonActiveStyle = "btn-info";
+        public string buttonNonActiveStyle = "btn-success";
+
+        public string ButtonStyle <T>(T item)
+        {
+            
+            if (item.Equals(true))
+            {
+                return buttonActiveStyle;
+            }
+
+            return buttonNonActiveStyle;
+
+        }
 
         void Accredited()
         {
@@ -32,7 +47,7 @@ namespace VirtualAssistant.Client.Shared
         {
            TheBasket.AccreditationAssistance = true;
            ShowAccreditationStatusRequest = false;
-           DisplayAccreditationAssistanceButtons = true;
+           DisplayAccreditationAssistanceButtons = false;
         }
         void DoesNotNeedAccreditationAssistance()
         {
@@ -41,6 +56,48 @@ namespace VirtualAssistant.Client.Shared
             TheBasket.AccreditationInterest = false;
 
         }
+
+        void SetaMaterialInterest()
+        {
+            if (TheBasket.SetaMaterialInterest == null || TheBasket.SetaMaterialInterest == false)
+            {
+                TheBasket.SetaMaterialInterest = true;
+            }
+            else 
+                TheBasket.SetaMaterialInterest = false;
+        }
+
+      
+        void QctoMaterialInterest()
+        {
+            if (TheBasket.QctoMaterialInterest == null || TheBasket.QctoMaterialInterest == false)
+            {
+                TheBasket.QctoMaterialInterest = true;
+            }
+            else
+                TheBasket.QctoMaterialInterest = false;
+        }
+
+        void OtherMaterialInterest()
+        {
+            if (TheBasket.OtherMaterialInterest == null || TheBasket.OtherMaterialInterest == false)
+            {
+                TheBasket.OtherMaterialInterest = true;
+            }
+            else
+                TheBasket.OtherMaterialInterest = false;
+        }
+
+        void ELearningInterest()
+        {
+            if (TheBasket.ELearningInterest == null || TheBasket.ELearningInterest == false)
+            {
+                TheBasket.ELearningInterest = true;
+            }
+            else
+                TheBasket.ELearningInterest = false;
+        }
+
         public bool ShowAccreditationStatusRequest { get; set; }
 
         [Parameter]
