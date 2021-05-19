@@ -21,15 +21,65 @@
         <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">No</button>
     </p>
 }
-@if (!DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons)
+@if (!DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons && ShowMaterialTypes)
 {<br /><br />
 <p>
     Ok thanks!
     Please select which type of Training Materials do you require from the options below. <br /><br />
+    <div>
+        <button class="btn @ButtonStyle(TBasket.SetaMaterialInterest)" @onclick="SetaMaterialInterest"><i class="@IconStyle(TBasket.SetaMaterialInterest)" aria-hidden="true"></i> SETA Qualifications / Units</button>
+        <button class="btn @ButtonStyle(TBasket.QctoMaterialInterest)" @onclick="QctoMaterialInterest"><i class="@IconStyle(TBasket.QctoMaterialInterest)" aria-hidden="true"></i> QCTO Qualifications / Modules</button>
+        <button class="btn @ButtonStyle(TBasket.ELearningInterest)" @onclick="ELearningInterest"><i class="@IconStyle(TBasket.ELearningInterest)" aria-hidden="true"></i> eLearning Materials / System</button>
+        <button class="btn @ButtonStyle(TBasket.OtherMaterialInterest)" @onclick="OtherMaterialInterest"><i class="@IconStyle(TBasket.OtherMaterialInterest)" aria-hidden="true"></i> Other Materials</button>
+    </div>
+    <br/><br/>
+    <button class="btn btn-sm btn-success" @onclick="MaterialTypeSelected"> Continue <i class="far fa-caret-square-right" aria-hidden="true"></i></button>
     
-        <button class="@ButtonStyle(TheBasket.SetaMaterialInterest)" @onclick="SetaMaterialInterest">SETA Qualifications / Units</button>
-        <button class="@ButtonStyle(TheBasket.QctoMaterialInterest)" @onclick="QctoMaterialInterest">QCTO Qualifications / Modules</button>
-        <button class="@ButtonStyle(TheBasket.OtherMaterialInterest)" @onclick="OtherMaterialInterest">Other Materials</button>
-        <button class="@ButtonStyle(TheBasket.ELearningInterest)" @onclick="ELearningInterest">eLearning Materials / System</button>
 </p>
 }
+
+@if (ProductTypeSelected)
+{
+    <br/><br/>
+    <p>Great! Now let's try and identify the specific packages you require.</p>
+
+    if (TBasket.SetaMaterialInterest == true)
+    {
+        SaqaIdAvailabilityRequest = true;
+
+        if (SaqaIdAvailabilityRequest) { 
+        <p>Do you know the SAQA ID's for the SETA Qualification's or Unit Standard's which you require?</p><br/>
+        <button class="btn btn-sm btn-success" @onclick="()=> SaqaIdAvailable = true"> Yes I do</button>
+        <button class="btn btn-sm btn-success" @onclick="()=> SaqaIdAvailable = false"> No I don't</button>
+        <button class="btn btn-sm btn-info" @onclick="()=> SaqaIdMeaningRequired = !SaqaIdMeaningRequired"><i class="fas fa-lightbulb" aria-hidden="true"></i> What's this?</button>
+            SaqaIdAvailabilityRequest = false;
+        }
+
+        if (SaqaIdAvailable)
+        {
+            //TextInput for SAQA ID
+        }
+        else if(!SaqaIdAvailable)
+        {
+            //Open SAQA Search
+            //TextInput for SAQA ID
+        }
+        if (SaqaIdMeaningRequired)
+        {
+           <br/>
+            <p>
+                SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard
+                registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
+                materials you require, we need to first identify which specific SAQA package it is which you require.
+            </p>
+        }
+        if (!SaqaIdAvailable && ShowSaqaSearch)
+        {
+            SaqaIdMeaningRequired = false;
+
+
+        }
+    }
+
+}
+
