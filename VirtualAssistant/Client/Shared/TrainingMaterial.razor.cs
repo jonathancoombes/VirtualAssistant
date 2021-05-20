@@ -12,17 +12,15 @@ namespace VirtualAssistant.Client.Shared
     {
         
 
-        [Parameter] public IBasketRepositoryService TBasket { get; set; }
+      [Parameter] public IBasketRepositoryService TheBasket { get; set; }
         
         public string buttonActiveStyle = "btn-success";
         public string buttonNonActiveStyle = "btn-default";
         public string iconActiveStyle = "fa fa-check";
         public string iconNonActiveStyle = "far fa-times-circle";
 
-        public TrainingMaterial()
-        {
-            TBasket.ShowMainMenu = false;
-        }
+
+      
 
         public string ButtonStyle <T>(T item)
         {
@@ -54,7 +52,7 @@ namespace VirtualAssistant.Client.Shared
             ShowAccreditationStatusRequest = false;
             DisplayAccreditationAssistanceButtons = false;
             DisplayAccreditationStatusButtons = false;
-            TBasket.AccreditationInterest = false;
+            TheBasket.AccreditationInterest = false;
             ShowMaterialTypes = true;
         }
         void NotAccredited()
@@ -68,58 +66,58 @@ namespace VirtualAssistant.Client.Shared
 
         void DoesNeedAccreditationAssistance()
         {
-           TBasket.AccreditationAssistance = true;
+           TheBasket.AccreditationAssistance = true;
            ShowAccreditationStatusRequest = false;
            DisplayAccreditationAssistanceButtons = false;
            ShowMaterialTypes = true;
         }
         void DoesNotNeedAccreditationAssistance()
         {
-            TBasket.AccreditationAssistance = false;
+            TheBasket.AccreditationAssistance = false;
             DisplayAccreditationAssistanceButtons = false;
-            TBasket.AccreditationInterest = false;
+            TheBasket.AccreditationInterest = false;
             ShowMaterialTypes = true;
         }
 
         void SetaMaterialInterest()
         {
-            if (TBasket.SetaMaterialInterest == null || TBasket.SetaMaterialInterest == false)
+            if (TheBasket.SetaMaterialInterest == null || TheBasket.SetaMaterialInterest == false)
             {
-                TBasket.SetaMaterialInterest = true;
+                TheBasket.SetaMaterialInterest = true;
             }
             else 
-                TBasket.SetaMaterialInterest = false;
+                TheBasket.SetaMaterialInterest = false;
         }
 
       
         void QctoMaterialInterest()
         {
-            if (TBasket.QctoMaterialInterest == null || TBasket.QctoMaterialInterest == false)
+            if (TheBasket.QctoMaterialInterest == null || TheBasket.QctoMaterialInterest == false)
             {
-                TBasket.QctoMaterialInterest = true;
+                TheBasket.QctoMaterialInterest = true;
             }
             else
-                TBasket.QctoMaterialInterest = false;
+                TheBasket.QctoMaterialInterest = false;
         }
 
         void OtherMaterialInterest()
         {
-            if (TBasket.OtherMaterialInterest == null || TBasket.OtherMaterialInterest == false)
+            if (TheBasket.OtherMaterialInterest == null || TheBasket.OtherMaterialInterest == false)
             {
-                TBasket.OtherMaterialInterest = true;
+                TheBasket.OtherMaterialInterest = true;
             }
             else
-                TBasket.OtherMaterialInterest = false;
+                TheBasket.OtherMaterialInterest = false;
         }
 
         void ELearningInterest()
         {
-            if (TBasket.ELearningInterest == null || TBasket.ELearningInterest == false)
+            if (TheBasket.ELearningInterest == null || TheBasket.ELearningInterest == false)
             {
-                TBasket.ELearningInterest = true;
+                TheBasket.ELearningInterest = true;
             }
             else
-                TBasket.ELearningInterest = false;
+                TheBasket.ELearningInterest = false;
         }
 
         void MaterialTypeSelected()
