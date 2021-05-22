@@ -1,17 +1,19 @@
 ﻿@using VirtualAssistant.Shared.Models
-@inject IBasketRepositoryService TBasket
 
-@if (ShowMainMenu)
+@if (TheBasket.ShowMainMenu)
 {
+    <strong>I require assistance with:</strong><br/>
+
     <button class="btn-info" @onclick="@(() => ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
     <button class="btn-info" @onclick="@(() => ShowAccreditation = !ShowAccreditation)">Accreditation</button>
     <button class="btn-info" @onclick="@(() => ShowElearning = !ShowElearning)">eLearning</button>
     <button class="btn-info" @onclick="@(() => ShowOther = !ShowOther)">Other</button>
+    TheBasket.ShowMainMenu = false;
 }
 
 @if (ShowTrainingMaterial)
 {
-    <TrainingMaterial TheBasket="TBasket" DisplayAccreditationStatusButtons="true" ActiveUser="ActiveUser"></TrainingMaterial>
+    <TrainingMaterial TheBasket="TheBasket" DisplayAccreditationStatusButtons="true" ActiveUser="ActiveUser"></TrainingMaterial>
     ResetState();
 }
 @if (ShowAccreditation)

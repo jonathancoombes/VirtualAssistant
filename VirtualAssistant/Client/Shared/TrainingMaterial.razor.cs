@@ -20,7 +20,10 @@ namespace VirtualAssistant.Client.Shared
         public string iconNonActiveStyle = "far fa-times-circle";
 
 
-      
+        protected override void OnInitialized()
+        {
+            TheBasket.ShowMainMenu = false;
+        }
 
         public string ButtonStyle <T>(T item)
         {

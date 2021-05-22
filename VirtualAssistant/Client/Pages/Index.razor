@@ -1,19 +1,32 @@
 ﻿@page "/"
+@using VirtualAssistant.Shared.Models
+@inject IBasketRepositoryService TheBasket
 
 <img src="images/va.PNG" width="200">
+
 
 <p>Welcome to <strong>Training Development Services!</strong></p>
 
 @if (String.IsNullOrEmpty(NewUser1.FirstName))
 {
-    <div>
-        <p name="hello">Hello, I am Sam. What is your name? </p>
-        <input @bind="NewUser1.FirstName" name="hi1" type="text" placeholder="enter first name"/>
+    @((MarkupString) Shared.Constants.ShowPreLoader)
+  
+    <div id="message" style="display: inline-block">
+        <p name="hello">@nameRequest</p>
+        <input @bind="NewUser1.FirstName" name="hi1" type="text" placeholder="enter first name" />
     </div>
+
 }
-    @if (!String.IsNullOrEmpty(NewUser1.FirstName) && (ShowMainMenu))
-    {
-        <div>Hi <strong>@NewUser1.FirstName </strong> and welcome! How can I help you today?</div><br/>
-        <MainMenuOptions   ShowMainMenu="true" ActiveUser="NewUser1"></MainMenuOptions>
-        
-    }
+@if (!String.IsNullOrEmpty(NewUser1.FirstName) && (TheBasket.ShowGreeting))
+{
+   
+        @((MarkupString) Shared.Constants.ShowPreLoader)
+    
+    <div id="message" style="display: inline-block">
+        Hi <strong>@NewUser1.FirstName </strong> and welcome! Select the option that best describes your needs.
+    </div>
+    <hr />
+    <MainMenuOptions TheBasket="TheBasket" ActiveUser="NewUser1"></MainMenuOptions>
+    TheBasket.ShowGreeting = false;
+
+}

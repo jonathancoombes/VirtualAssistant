@@ -75,3 +75,28 @@ div.amber.on {
 div.green.on {
     background-color: green;
 }
+
+#message {
+    animation: cssAnimation 0s 1s forwards;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: none; 
+    
+    vertical-align: middle;
+}
+#loading{
+    animation: cssAnimation 1s 0s backwards;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: none;
+    
+    vertical-align: middle;
+}
+@keyframes cssAnimation {
+    to {
+        width: auto;
+        height: auto;
+    }
+}

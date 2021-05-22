@@ -11,17 +11,16 @@ namespace VirtualAssistant.Client.Shared
     public partial class MainMenuOptions
     {
 
+        [Parameter] public IBasketRepositoryService TheBasket { get; set; }
 
         [Parameter]
         public User ActiveUser { get; set; }
-
-
-        //protected async Task NewMenuSelected(ChangeEventArgs e)
-        //{
-        //   await OnNewMenuDisplay.InvokeAsync((bool)e.Value);
-        // }
-        [Parameter]
-        public bool ShowMainMenu { get; set; }
+        
+       
+      protected override void OnInitialized()
+        {
+            TheBasket.ShowMainMenu = true;
+        }
 
         public bool ShowTrainingMaterial { get; set; }
         public bool ShowAccreditation { get; set; }

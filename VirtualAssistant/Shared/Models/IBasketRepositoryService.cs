@@ -8,6 +8,7 @@ namespace VirtualAssistant.Shared.Models
 
         public int BasketId { get; set; }
         public bool ShowMainMenu { get; set; }
+        public bool ShowGreeting { get; set; }
 
         public bool? TrainingMaterialInterest { get; set; }
         public bool? AccreditationInterest { get; set; }

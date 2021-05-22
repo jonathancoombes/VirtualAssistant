@@ -4,7 +4,7 @@
 
 
 @if (DisplayAccreditationStatusButtons && !DisplayAccreditationAssistanceButtons)
-{<br /><br />
+{<strong>Training Material - Provider Status</strong>
     <p>
         Ok, let me see how I can assist you with your training material needs.
         Is your company already Accredited as a Training Provider? <br /><br />
@@ -13,7 +13,7 @@
     </p>
 }
 @if (DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons)
-{<br /><br />
+{<strong>Training Material - Accreditation Assistance</strong>
     <p>
         Ok great!
         Do you require assistance to become Accredited as a Training Provider? <br /><br />
@@ -22,7 +22,7 @@
     </p>
 }
 @if (!DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons && ShowMaterialTypes)
-{<br /><br />
+{<strong>Training Material - Type Selection</strong>
 <p>
     Ok thanks!
     Please select which type of Training Materials do you require from the options below. <br /><br />
@@ -40,7 +40,7 @@
 
 @if (ProductTypeSelected)
 {
-    <br/><br/>
+    <strong>Training Material - SAQA ID Identification</strong>
     <p>Great! Now let's try and identify the specific packages you require.</p>
 
     if (TheBasket.SetaMaterialInterest == true)
@@ -66,7 +66,7 @@
         }
         if (SaqaIdMeaningRequired)
         {
-           <br/>
+           <br/><br/>
             <p>
                 SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard
                 registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
