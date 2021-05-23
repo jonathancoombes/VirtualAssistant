@@ -9,8 +9,7 @@ namespace VirtualAssistant.Client.Shared
     {
         public static string Loader(string duration)
         {
-            string result = "";
-            return result = $"<div id='loader' class='{duration.ToString()}' style='display:inline-block'>" + "<img src=" + "images/loadi.gif" + " width='85'/></div>";
+            return new($"<div id='loader' class='{duration}' style='display:inline-block'> <img src='{Constants.LoaderImage} ' width='85'/></div>");
     
         }
 

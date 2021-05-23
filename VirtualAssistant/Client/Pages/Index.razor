@@ -2,10 +2,10 @@
 @using VirtualAssistant.Shared.Models
 @inject IBasketRepositoryService TheBasket
 
-<img src="images/va.PNG" width="200">
+<img src="@Constants.VirtualAssistantLogo" width="200">
 
 
-<p>Welcome to <strong>Training Development Services!</strong></p>
+<p>Welcome to <strong>@Constants.CompanyName</strong></p>
 
 @if (String.IsNullOrEmpty(NewUser1.FirstName))
 {

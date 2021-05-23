@@ -17,12 +17,11 @@ namespace VirtualAssistant.Client.Shared
             public static string LoaderShort = "LoaderShort";
             public static string LoaderMed = "LoaderMed";
         }
-        
-        public enum DisplayType
-        {
-            Loader,
-            Message
-        }
+       
+        //ConfigurationOptions
+        public static string VirtualAssistantLogo = "images/va.PNG";
+        public static string LoaderImage = "images/loadi.gif";
+        public static string CompanyName = "Training Development Services";
 
         public enum ProductType
         {
