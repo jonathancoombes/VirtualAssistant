@@ -7,7 +7,6 @@
 {
     @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
 
-
     <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
         <strong>Accreditation Status</strong><br />
         <p>
@@ -78,7 +77,12 @@
 
         if (SaqaIdAvailable)
         {
-            //TextInput for SAQA ID
+            <p>Enter the SAQA ID & click "add to basket" to build your selection</p>
+            <br />
+            <input @bind="SelectedTrainingMaterialItem.SaqaId" name="SaqaId" type="text" placeholder="enter SAQA ID" />
+            <button class="btn btn-sm btn-success" @onclick="AddTrainingMaterialItemToBasket"> Add to Basket</button>
+            <button class="btn btn-sm btn-info" > Continue</button>
+            <button class="btn btn-sm btn-info" @onclick="ViewBasket"> ViewBasket</button>
         }
         else if (!SaqaIdAvailable)
         {
@@ -91,7 +95,7 @@
             <br />
             @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
 
-            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" 
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort"
                  style="display: inline-block">
                 <p>
                     SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard

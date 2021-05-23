@@ -18,6 +18,28 @@ namespace VirtualAssistant.Client.Shared
         public string iconActiveStyle = "fa fa-check";
         public string iconNonActiveStyle = "far fa-times-circle";
 
+        public TrainingMaterialItem SelectedTrainingMaterialItem = new TrainingMaterialItem();
+
+
+        public void ViewBasket()
+        {
+            foreach (var item in TheBasket.TrainingMaterialItems)
+            {
+                item.SaqaId.ToString();
+            }
+        }
+        public void AddTrainingMaterialItemToBasket()
+        {
+            TheBasket.TrainingMaterialItems = new List<TrainingMaterialItem>
+            {
+                SelectedTrainingMaterialItem
+            };
+        }
+
+        public void RemoveTrainingMaterialItemFromBasket(TrainingMaterialItem item)
+        {
+            TheBasket.TrainingMaterialItems.Remove(item);
+        }
 
         protected override void OnInitialized()
         {

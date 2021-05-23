@@ -16,13 +16,14 @@ namespace VirtualAssistant.Shared.Models
             Callback = 1,
             Message = 2
         }
-       public  enum TrainingMaterialType { 
+       public enum TrainingMaterialItemType { 
             SetaQualification,
             SetaUnitStandard,
-            QctoQualification
+            QctoQualification,
+            Other
 
         }
-        public enum TrainingMaterialFormat
+        public enum TrainingMaterialItemFormat
         {
             StandardClassroom = 1,
             Elearning = 2
@@ -33,6 +34,21 @@ namespace VirtualAssistant.Shared.Models
             StandardClassroomFormat = 1,
             ElearningFormat = 2
 
+        }
+
+        public enum LmsType
+        {
+            Moodle = 0,
+            Blackboard = 1,
+            Edmondo = 2,
+            CaptivatePrime = 3,
+            LearnUpon = 4,
+            ISpring = 5,
+            LearnDash = 6,
+            Totara = 7,
+            Chamilo = 8,
+            Canvas = 9,
+            Other = 10
         }
         public enum Seta
         {
@@ -47,12 +63,9 @@ namespace VirtualAssistant.Shared.Models
 
         public enum SetupPackage
         {
+            
             Gold, 
             Platinum
         }
 
-        public enum ElearningPlatform
-        {
-
-        }
 }

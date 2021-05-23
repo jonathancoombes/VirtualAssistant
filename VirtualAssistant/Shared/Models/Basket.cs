@@ -24,22 +24,14 @@ namespace VirtualAssistant.Shared.Models
         public bool? SetaMaterialInterest { get; set; }
         public bool? QctoMaterialInterest { get; set; }
         public bool? OtherMaterialInterest { get; set; }
-        
-        public Hashtable TrainingMaterialItems { get; set; }
-        public Hashtable AccreditationItems { get; set; }
-        public Hashtable ElearningItems { get; set; }
-        public List<Hashtable> MainBasket { get; set; }
+
+        public TrainingMaterialItem TrainingMaterialItem { get; set; }
+
+        public List<TrainingMaterialItem> TrainingMaterialItems { get; set; }
+        public List<ElearningItem> ElearningItems { get; set; }
+        public List<AccreditationItem> AccreditationItems { get; set; }
 
 
-        public void AddBasketItem<T>(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteBasketItem<T>(T item)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

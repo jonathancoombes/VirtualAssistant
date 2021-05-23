@@ -18,16 +18,13 @@ namespace VirtualAssistant.Shared.Models
         public bool? QctoMaterialInterest { get; set; }
         public bool? OtherMaterialInterest { get; set; }
 
-        void DeleteBasketItem<T>(T item);
-        public void AddBasketItem<T>(T item);
-        List<Hashtable> MainBasket { get; set; }
-        
-        public Hashtable TrainingMaterialItems { get; set; }
-        public Hashtable AccreditationItems { get; set; }
-        public Hashtable ElearningItems { get; set; }
+        public List<TrainingMaterialItem> TrainingMaterialItems { get; set; }
+        public List<ElearningItem> ElearningItems { get; set; }
+        public List<AccreditationItem> AccreditationItems { get; set; }
 
 
-
-         
     };
 }
+
+   
+
