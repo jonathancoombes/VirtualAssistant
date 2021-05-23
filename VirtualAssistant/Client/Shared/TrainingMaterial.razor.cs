@@ -10,9 +10,8 @@ namespace VirtualAssistant.Client.Shared
 {
     public partial class TrainingMaterial 
     {
-        
 
-      [Parameter] public IBasketRepositoryService TheBasket { get; set; }
+        [Parameter] public IBasketRepositoryService TheBasket { get; set; }
         
         public string buttonActiveStyle = "btn-success";
         public string buttonNonActiveStyle = "btn-default";
@@ -27,31 +26,25 @@ namespace VirtualAssistant.Client.Shared
 
         public string ButtonStyle <T>(T item)
         {
-            
             if (item.Equals(true))
             {
                 return buttonActiveStyle;
             }
-
             return buttonNonActiveStyle;
 
         }
         public string IconStyle<T>(T item)
         {
-
             if (item.Equals(true))
             {
                 return iconActiveStyle;
             }
-
             return iconNonActiveStyle;
-
         }
 
 
         void Accredited()
         {
-            
             ShowAccreditationStatusRequest = false;
             DisplayAccreditationAssistanceButtons = false;
             DisplayAccreditationStatusButtons = false;
@@ -63,8 +56,6 @@ namespace VirtualAssistant.Client.Shared
             DisplayAccreditationAssistanceButtons = true;
             ShowAccreditationStatusRequest = false;
             DisplayAccreditationStatusButtons = false;
-            
-
         }
 
         void DoesNeedAccreditationAssistance()
@@ -127,14 +118,12 @@ namespace VirtualAssistant.Client.Shared
         {
             ProductTypeSelected = true;
             ShowMaterialTypes = false;
-            
-
         }
         
         public bool ShowAccreditationStatusRequest { get; set; }
 
         public bool ProductTypeSelected { get; set; }
-        public bool SaqaIdAvailabilityRequest { get; set; }
+        public bool SaqaIdAvailabilityRequirement{ get; set; }
         public bool SaqaIdAvailable { get; set; }
         public bool SaqaIdMeaningRequired { get; set; }
         public bool ShowSaqaSearch { get; set; }

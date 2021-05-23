@@ -4,74 +4,100 @@
 
 
 @if (DisplayAccreditationStatusButtons && !DisplayAccreditationAssistanceButtons)
-{<strong>Training Material - Provider Status</strong>
-    <p>
-        Ok, let me see how I can assist you with your training material needs.
-        Is your company already Accredited as a Training Provider? <br /><br />
-        <button class="btn-info" @onclick="@Accredited">Yes</button>
-        <button class="btn-info" @onclick="@NotAccredited">No</button>
-    </p>
+{
+    @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+
+
+    <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+        <strong>Accreditation Status</strong><br />
+        <p>
+            Ok, let me see how I can assist you with your training material needs.
+            Is your company already Accredited as a Training Provider? <br /><br />
+            <button class="btn-info" @onclick="@Accredited">Yes</button>
+            <button class="btn-info" @onclick="@NotAccredited">No</button>
+        </p>
+    </div>
 }
 @if (DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons)
-{<strong>Training Material - Accreditation Assistance</strong>
-    <p>
-        Ok great!
-        Do you require assistance to become Accredited as a Training Provider? <br /><br />
-        <button class="btn-info" @onclick="@DoesNeedAccreditationAssistance">Yes</button>
-        <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">No</button>
-    </p>
+{
+    @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+    <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+        <strong>Accreditation Assistance</strong><br />
+        <p>
+            Ok!
+            Do you require assistance to become Accredited as a Training Provider? <br /><br />
+            <button class="btn-info" @onclick="@DoesNeedAccreditationAssistance">Yes</button>
+            <button class="btn-info" @onclick="@DoesNotNeedAccreditationAssistance">No</button>
+        </p>
+    </div>
 }
 @if (!DisplayAccreditationAssistanceButtons && !DisplayAccreditationStatusButtons && ShowMaterialTypes)
-{<strong>Training Material - Type Selection</strong>
-<p>
-    Ok thanks!
-    Please select which type of Training Materials do you require from the options below. <br /><br />
-    <div>
-        <button class="btn @ButtonStyle(TheBasket.SetaMaterialInterest)" @onclick="SetaMaterialInterest"><i class="@IconStyle(TheBasket.SetaMaterialInterest)" aria-hidden="true"></i> SETA Qualifications / Units</button>
-        <button class="btn @ButtonStyle(TheBasket.QctoMaterialInterest)" @onclick="QctoMaterialInterest"><i class="@IconStyle(TheBasket.QctoMaterialInterest)" aria-hidden="true"></i> QCTO Qualifications / Modules</button>
-        <button class="btn @ButtonStyle(TheBasket.ELearningInterest)" @onclick="ELearningInterest"><i class="@IconStyle(TheBasket.ELearningInterest)" aria-hidden="true"></i> eLearning Materials / System</button>
-        <button class="btn @ButtonStyle(TheBasket.OtherMaterialInterest)" @onclick="OtherMaterialInterest"><i class="@IconStyle(TheBasket.OtherMaterialInterest)" aria-hidden="true"></i> Other Materials</button>
+{
+    @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+
+    <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+        <strong>Material Type</strong>
+        <p>
+            Ok thanks!
+            Please select which type(s) of Training Materials you require from the options below. <br /><br />
+            <div>
+                <button class="btn @ButtonStyle(TheBasket.SetaMaterialInterest)" @onclick="SetaMaterialInterest"><i class="@IconStyle(TheBasket.SetaMaterialInterest)" aria-hidden="true"></i> SETA Qualifications / Units</button>
+                <button class="btn @ButtonStyle(TheBasket.QctoMaterialInterest)" @onclick="QctoMaterialInterest"><i class="@IconStyle(TheBasket.QctoMaterialInterest)" aria-hidden="true"></i> QCTO Qualifications / Modules</button>
+                <button class="btn @ButtonStyle(TheBasket.ELearningInterest)" @onclick="ELearningInterest"><i class="@IconStyle(TheBasket.ELearningInterest)" aria-hidden="true"></i> eLearning Materials / System</button>
+                <button class="btn @ButtonStyle(TheBasket.OtherMaterialInterest)" @onclick="OtherMaterialInterest"><i class="@IconStyle(TheBasket.OtherMaterialInterest)" aria-hidden="true"></i> Other Materials</button>
+            </div>
+            <br /><br />
+            <button class="btn btn-sm btn-success" @onclick="MaterialTypeSelected"> Continue <i class="far fa-caret-square-right" aria-hidden="true"></i></button>
+
+        </p>
     </div>
-    <br/><br/>
-    <button class="btn btn-sm btn-success" @onclick="MaterialTypeSelected"> Continue <i class="far fa-caret-square-right" aria-hidden="true"></i></button>
-    
-</p>
 }
 
 @if (ProductTypeSelected)
 {
-    <strong>Training Material - SAQA ID Identification</strong>
     <p>Great! Now let's try and identify the specific packages you require.</p>
 
     if (TheBasket.SetaMaterialInterest == true)
     {
-        SaqaIdAvailabilityRequest = true;
+        SaqaIdAvailabilityRequirement = true;
 
-        if (SaqaIdAvailabilityRequest) { 
-        <p>Do you know the SAQA ID's for the SETA Qualification's or Unit Standard's which you require?</p><br/>
-        <button class="btn btn-sm btn-success" @onclick="()=> SaqaIdAvailable = true"> Yes I do</button>
-        <button class="btn btn-sm btn-success" @onclick="()=> SaqaIdAvailable = false"> No I don't</button>
-        <button class="btn btn-sm btn-info" @onclick="()=> SaqaIdMeaningRequired = !SaqaIdMeaningRequired"><i class="fas fa-lightbulb" aria-hidden="true"></i> What's this?</button>
-            SaqaIdAvailabilityRequest = false;
+        if (SaqaIdAvailabilityRequirement)
+        {
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+                <strong>SAQA ID Identification</strong>
+                <br />
+                <p>Do you know the SAQA ID's for the SETA Qualification's or Unit Standard's which you require?</p><br />
+                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailable = true"> Yes I do</button>
+                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailable = false"> No I don't</button>
+                <button class="btn btn-sm btn-info" @onclick="() => SaqaIdMeaningRequired = !SaqaIdMeaningRequired"><i class="fas fa-lightbulb" aria-hidden="true"></i> What's this?</button>
+            </div>
+            SaqaIdAvailabilityRequirement = false;
         }
 
         if (SaqaIdAvailable)
         {
             //TextInput for SAQA ID
         }
-        else if(!SaqaIdAvailable)
+        else if (!SaqaIdAvailable)
         {
             //Open SAQA Search
             //TextInput for SAQA ID
         }
         if (SaqaIdMeaningRequired)
         {
-           <br/><br/>
-            <p>
-                SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard
-                registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
-                materials you require, we need to first identify which specific SAQA package it is which you require.
-            </p>
+            <br />
+            <br />
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+                <p>
+                    SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard
+                    registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
+                    materials you require, we need to first identify which specific SAQA package it is which you require.
+                </p>
+            </div>
         }
         if (!SaqaIdAvailable && ShowSaqaSearch)
         {

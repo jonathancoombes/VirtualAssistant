@@ -76,24 +76,40 @@ div.green.on {
     background-color: green;
 }
 
-#message {
-    animation: cssAnimation 0s 1s forwards;
+.MessageMedium {
+    animation: cssAnimation 0s 2.2s forwards;
     height: 0;
     width: 0;
     overflow: hidden;
-    display: none; 
-    
+    display: none;
     vertical-align: middle;
 }
-#loading{
+.MessageShort {
+    animation: cssAnimation 0s 1.2s forwards;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: none;
+    vertical-align: middle;
+}
+
+.LoaderMedium {
+    animation: cssAnimation 2s 0s backwards;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: none;
+    vertical-align: middle;
+}
+.LoaderShort {
     animation: cssAnimation 1s 0s backwards;
     height: 0;
     width: 0;
     overflow: hidden;
     display: none;
-    
     vertical-align: middle;
 }
+
 @keyframes cssAnimation {
     to {
         width: auto;

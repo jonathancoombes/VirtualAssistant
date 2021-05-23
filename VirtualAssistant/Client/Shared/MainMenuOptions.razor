@@ -2,32 +2,46 @@
 
 @if (TheBasket.ShowMainMenu)
 {
-    <strong>I require assistance with:</strong><br/>
+   <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+        <strong>I require assistance with:</strong>
+        <br /><br />
+        <button class="btn-info" @onclick="@(() => ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
+        <button class="btn-info" @onclick="@(() => ShowAccreditation = !ShowAccreditation)">Accreditation</button>
+        <button class="btn-info" @onclick="@(() => ShowElearning = !ShowElearning)">eLearning</button>
+        <button class="btn-info" @onclick="@(() => ShowOther = !ShowOther)">Other</button>
+    </div>
 
-    <button class="btn-info" @onclick="@(() => ShowTrainingMaterial = !ShowTrainingMaterial)">Training Material</button>
-    <button class="btn-info" @onclick="@(() => ShowAccreditation = !ShowAccreditation)">Accreditation</button>
-    <button class="btn-info" @onclick="@(() => ShowElearning = !ShowElearning)">eLearning</button>
-    <button class="btn-info" @onclick="@(() => ShowOther = !ShowOther)">Other</button>
-    TheBasket.ShowMainMenu = false;
-}
+        TheBasket.ShowMainMenu = false;
+        }
 
-@if (ShowTrainingMaterial)
-{
-    <TrainingMaterial TheBasket="TheBasket" DisplayAccreditationStatusButtons="true" ActiveUser="ActiveUser"></TrainingMaterial>
-    ResetState();
-}
-@if (ShowAccreditation)
-{
-    <p>ShowingAccreditation</p>
-    ResetState();
-}
-@if (ShowElearning)
-{
-    <p>ShowingElearning</p>
-    ResetState();
-}
-@if (ShowOther)
-{
-    <p>ShowingOther</p>
-    ResetState();
-}
+        @if (ShowTrainingMaterial)
+        {
+            
+            <TrainingMaterial TheBasket="TheBasket" DisplayAccreditationStatusButtons="true" ActiveUser="ActiveUser"></TrainingMaterial>
+            ResetState();
+        }
+        @if (ShowAccreditation)
+        {
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+            
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+            <p>ShowingAccreditation</p>
+                </div>
+            ResetState();
+        }
+        @if (ShowElearning)
+        {
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+            <p>ShowingElearning</p>
+            </div>
+            ResetState();
+        }
+        @if (ShowOther)
+        {
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
+            <p>ShowingOther</p>
+            </div>
+            ResetState();
+        }
