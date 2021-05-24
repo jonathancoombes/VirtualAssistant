@@ -59,17 +59,19 @@
     if (TheBasket.SetaMaterialInterest == true)
     {
         SaqaIdAvailabilityRequirement = true;
+        ShowSaqaIdRequestOptions = true;
 
-        if (SaqaIdAvailabilityRequirement)
+        if (SaqaIdAvailabilityRequirement && ShowSaqaIdRequestOptions)
         {
+            ShowSaqaIdRequestOptions = false;
             @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
 
             <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: inline-block">
                 <strong>SAQA ID Identification</strong>
                 <br />
                 <p>Do you know the SAQA ID's for the SETA Qualification's or Unit Standard's which you require?</p><br />
-                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailable = true"> Yes I do</button>
-                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailable = false"> No I don't</button>
+                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailability(true)" > Yes I do</button>
+                <button class="btn btn-sm btn-success" @onclick="() => SaqaIdAvailability(false) "> No I don't</button>
                 <button class="btn btn-sm btn-info" @onclick="() => SaqaIdMeaningRequired = !SaqaIdMeaningRequired"><i class="fas fa-lightbulb" aria-hidden="true"></i> What's this?</button>
             </div>
             SaqaIdAvailabilityRequirement = false;
@@ -77,40 +79,51 @@
 
         if (SaqaIdAvailable)
         {
-            <p>Enter the SAQA ID & click "add to basket" to build your selection</p>
-            <br />
-            <input @bind="SelectedTrainingMaterialItem.SaqaId" name="SaqaId" type="text" placeholder="enter SAQA ID" />
-            <button class="btn btn-sm btn-success" @onclick="AddTrainingMaterialItemToBasket"> Add to Basket</button>
-            <button class="btn btn-sm btn-info" > Continue</button>
-            <button class="btn btn-sm btn-info" @onclick="ViewBasket"> ViewBasket</button>
+            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+            <div id="message" class="@Constants.MessageDelay.MessageDelayShort" style="display: block; text-align: left">
+                <br />
+                <p>Enter the SAQA ID & click "add to basket" to build your selection</p>
+                @*<form method="post">
+                    
+                    <input asp-for="SaqaId" placeholder="enter SAQA ID"/><br />
+                    <input type="submit" />
+                </form>*@
+
+                <input @bind="SaqaId" name="SaqaIdTextField" type="text" />
+                <button class="btn btn-sm btn-success" @onclick="AddTrainingMaterialItemToBasket"> Add to Basket</button>
+                <button class="btn btn-sm btn-danger" @onclick="@(() => ShowBasket = !ShowBasket)">@TheBasket.TrainingMaterialItems.Count <i class="fas fa-shopping-basket" title="Click to View" aria-hidden="true"> </i> Quote Basket</button>
+                <button class="btn btn-sm btn-info"> Submit & Continue</button>
+                </div>
         }
         else if (!SaqaIdAvailable)
         {
             //Open SAQA Search
             //TextInput for SAQA ID
         }
+        if (ShowBasket)
+        {
+            <Basket TheBasket="TheBasket"></Basket>
+        }
         if (SaqaIdMeaningRequired)
         {
-            <br />
-            <br />
-            @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
+                <br />
+                <br />
+                @((MarkupString) Helpers.Loader(Constants.LoaderDuration.LoaderShort))
 
-            <div id="message" class="@Constants.MessageDelay.MessageDelayShort"
-                 style="display: inline-block">
-                <p>
-                    SAQA ID's are a four to six digit number which is used to uniquely identify a Qualification or Unit Standard
-                    registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
-                    materials you require, we need to first identify which specific SAQA package it is which you require.
-                </p>
-            </div>
-        }
-        if (!SaqaIdAvailable && ShowSaqaSearch)
-        {
-            SaqaIdMeaningRequired = false;
-
-
-        }
+                <div id="message" class="@Constants.MessageDelay.MessageDelayShort"
+                     style="display: inline-block">
+                    <p><strong>SAQA ID: Meaning</strong>
+                        a SAQA ID is a four to six digit number that is used to uniquely identify a Qualification or Unit Standard
+                        registered on the South African Qualification's Authority (SAQA) database. In order to provide you with a quotation for the
+                        materials you require, we need to first identify the specific SAQA packages by their ID's.
+                    </p>
+                </div>
+                }
+                if (!SaqaIdAvailable && ShowSaqaSearch)
+                {
+                SaqaIdMeaningRequired = false;
+                }
     }
 
-}
+ }
 

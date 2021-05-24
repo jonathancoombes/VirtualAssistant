@@ -11,7 +11,13 @@ namespace VirtualAssistant.Client.Shared
     {
         [Parameter] public IBasketRepositoryService TheBasket { get; set; }
 
+        public void DeleteBasketItem(TrainingMaterialItem item)
+        {
+            TheBasket.TrainingMaterialItems.Remove(item);
+        }
 
+
+        
 
     }
 }

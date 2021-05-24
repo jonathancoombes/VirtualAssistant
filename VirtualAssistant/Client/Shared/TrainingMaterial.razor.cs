@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,32 +9,37 @@ using VirtualAssistant.Shared.Models;
 
 namespace VirtualAssistant.Client.Shared
 {
-    public partial class TrainingMaterial 
+    public partial class TrainingMaterial
     {
 
         [Parameter] public IBasketRepositoryService TheBasket { get; set; }
-        
+
         public string buttonActiveStyle = "btn-success";
         public string buttonNonActiveStyle = "btn-default";
         public string iconActiveStyle = "fa fa-check";
         public string iconNonActiveStyle = "far fa-times-circle";
 
+
         public TrainingMaterialItem SelectedTrainingMaterialItem = new TrainingMaterialItem();
+        public List<TrainingMaterialItem> TrainingMaterialItems = new List<TrainingMaterialItem>();
+
+        
+
+        [Required, MinLength(4), MaxLength(6)]
+        public int? SaqaId { get; set; }
 
 
-        public void ViewBasket()
-        {
-            foreach (var item in TheBasket.TrainingMaterialItems)
-            {
-                item.SaqaId.ToString();
-            }
-        }
+
+
         public void AddTrainingMaterialItemToBasket()
         {
-            TheBasket.TrainingMaterialItems = new List<TrainingMaterialItem>
-            {
-                SelectedTrainingMaterialItem
-            };
+            SelectedTrainingMaterialItem.SaqaId = SaqaId;
+            TheBasket.TrainingMaterialItems.Add(SelectedTrainingMaterialItem);
+            
+
+            SaqaId = null;
+
+
         }
 
         public void RemoveTrainingMaterialItemFromBasket(TrainingMaterialItem item)
@@ -44,9 +50,13 @@ namespace VirtualAssistant.Client.Shared
         protected override void OnInitialized()
         {
             TheBasket.ShowMainMenu = false;
+            TheBasket.TrainingMaterialItems = TrainingMaterialItems;
+
+            ShowBasket = false;
+
         }
 
-        public string ButtonStyle <T>(T item)
+        public string ButtonStyle<T>(T item)
         {
             if (item.Equals(true))
             {
@@ -65,6 +75,20 @@ namespace VirtualAssistant.Client.Shared
         }
 
 
+        void SaqaIdAvailability(bool avail)
+        {
+            if (avail)
+            {
+                SaqaIdAvailable = true;
+                SaqaIdMeaningRequired = false;
+            }
+            else
+            {
+                SaqaIdAvailable = false;
+            }
+
+        }
+
         void Accredited()
         {
             ShowAccreditationStatusRequest = false;
@@ -82,10 +106,10 @@ namespace VirtualAssistant.Client.Shared
 
         void DoesNeedAccreditationAssistance()
         {
-           TheBasket.AccreditationAssistance = true;
-           ShowAccreditationStatusRequest = false;
-           DisplayAccreditationAssistanceButtons = false;
-           ShowMaterialTypes = true;
+            TheBasket.AccreditationAssistance = true;
+            ShowAccreditationStatusRequest = false;
+            DisplayAccreditationAssistanceButtons = false;
+            ShowMaterialTypes = true;
         }
         void DoesNotNeedAccreditationAssistance()
         {
@@ -101,11 +125,11 @@ namespace VirtualAssistant.Client.Shared
             {
                 TheBasket.SetaMaterialInterest = true;
             }
-            else 
+            else
                 TheBasket.SetaMaterialInterest = false;
         }
 
-      
+
         void QctoMaterialInterest()
         {
             if (TheBasket.QctoMaterialInterest == null || TheBasket.QctoMaterialInterest == false)
@@ -141,21 +165,19 @@ namespace VirtualAssistant.Client.Shared
             ProductTypeSelected = true;
             ShowMaterialTypes = false;
         }
-        
+
         public bool ShowAccreditationStatusRequest { get; set; }
 
         public bool ProductTypeSelected { get; set; }
-        public bool SaqaIdAvailabilityRequirement{ get; set; }
+        public bool SaqaIdAvailabilityRequirement { get; set; }
         public bool SaqaIdAvailable { get; set; }
         public bool SaqaIdMeaningRequired { get; set; }
         public bool ShowSaqaSearch { get; set; }
-
-        [Parameter]
-    public User ActiveUser { get; set; } 
-
+        public bool ShowSaqaIdRequestOptions { get; set; }
+        public bool ShowBasket { get; set; }
+        
     [Parameter]
-
-    public TrainingMaterial Material { get; set; }
+    public User ActiveUser { get; set; }
 
     [Parameter]
     public bool DisplayAccreditationStatusButtons { get; set; }
