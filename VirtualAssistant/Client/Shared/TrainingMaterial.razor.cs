@@ -22,21 +22,24 @@ namespace VirtualAssistant.Client.Shared
 
         public TrainingMaterialItem SelectedTrainingMaterialItem = new TrainingMaterialItem();
         public List<TrainingMaterialItem> TrainingMaterialItems = new List<TrainingMaterialItem>();
-
+       
         
 
         [Required, MinLength(4), MaxLength(6)]
         public int? SaqaId { get; set; }
 
-
+        public void RefreshState()
+        {
+            this.StateHasChanged();
+        }
 
 
         public void AddTrainingMaterialItemToBasket()
         {
             SelectedTrainingMaterialItem.SaqaId = SaqaId;
             TheBasket.TrainingMaterialItems.Add(SelectedTrainingMaterialItem);
-            
 
+            //Sort Out duplicate basket item when added. Seems that same item is added to list.
             SaqaId = null;
 
 
@@ -50,7 +53,7 @@ namespace VirtualAssistant.Client.Shared
         protected override void OnInitialized()
         {
             TheBasket.ShowMainMenu = false;
-            TheBasket.TrainingMaterialItems = TrainingMaterialItems;
+            
 
             ShowBasket = false;
 
