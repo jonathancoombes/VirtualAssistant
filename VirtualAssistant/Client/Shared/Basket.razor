@@ -1,11 +1,15 @@
 ﻿
+
 @foreach (var item in TheBasket.TrainingMaterialItems)
 {
-    int ind = 0;
     <th>Description</th>
-    <tr><td>@ind .</td><td>SAQA ID: @item.SaqaId</td><td>Training Material Package</td><td>
-        <button class="btn btn-sm btn-danger" @onclick="@(() => DeleteBasketItem(item))"><i class="fas fa-trash" title="Delete" aria-hidden="true"> </i> Delete Item</button>
-    </td></tr>
-    ind++;
+    <tr>
+        <td> - SAQA ID: @item.SaqaId</td>
+        <td>Training Material Package</td>
+        <td>
+            <button class="btn btn-sm btn-danger" @onclick="@(() => DeleteBasketItem(item))"><i class="fas fa-trash" title="Delete" aria-hidden="true"> </i> Remove</button>
+        </td>
+    </tr>
+    
 }
 

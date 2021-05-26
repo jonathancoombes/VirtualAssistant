@@ -20,7 +20,6 @@ namespace VirtualAssistant.Client.Shared
         public string iconNonActiveStyle = "far fa-times-circle";
 
 
-        public TrainingMaterialItem SelectedTrainingMaterialItem = new TrainingMaterialItem();
         public List<TrainingMaterialItem> TrainingMaterialItems = new List<TrainingMaterialItem>();
        
         
@@ -35,13 +34,18 @@ namespace VirtualAssistant.Client.Shared
 
 
         public void AddTrainingMaterialItemToBasket()
-        {
-            SelectedTrainingMaterialItem.SaqaId = SaqaId;
-            TheBasket.TrainingMaterialItems.Add(SelectedTrainingMaterialItem);
+        {        
+        
+        TrainingMaterialItem selectedTrainingMaterialItem = new TrainingMaterialItem();
 
-            //Sort Out duplicate basket item when added. Seems that same item is added to list.
+        selectedTrainingMaterialItem.SaqaId = SaqaId;
+            if (selectedTrainingMaterialItem.SaqaId != null)
+            {
+                TrainingMaterialItems.Add(selectedTrainingMaterialItem);
+            }
+
+            TheBasket.TrainingMaterialItems = TrainingMaterialItems;
             SaqaId = null;
-
 
         }
 
@@ -53,7 +57,7 @@ namespace VirtualAssistant.Client.Shared
         protected override void OnInitialized()
         {
             TheBasket.ShowMainMenu = false;
-            
+             TheBasket.TrainingMaterialItems = TrainingMaterialItems;
 
             ShowBasket = false;
 

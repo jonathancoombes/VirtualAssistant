@@ -13,14 +13,14 @@ namespace VirtualAssistant.Client.Shared
 
         [CascadingParameter]
         public TrainingMaterial _Parent { get; set; }
-
+        int ind = 0;
         public void DeleteBasketItem(TrainingMaterialItem item)
         {
             TheBasket.TrainingMaterialItems.Remove(item);
             _Parent.RefreshState();
 
         }
-
+        
 
 
 

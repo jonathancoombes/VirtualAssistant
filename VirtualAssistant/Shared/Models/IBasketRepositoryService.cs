@@ -5,7 +5,7 @@ namespace VirtualAssistant.Shared.Models
 {
     public interface IBasketRepositoryService
     {
-
+       
         public int BasketId { get; set; }
         public bool ShowMainMenu { get; set; }
         public bool ShowGreeting { get; set; }

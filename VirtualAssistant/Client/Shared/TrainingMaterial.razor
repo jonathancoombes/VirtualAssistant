@@ -90,7 +90,7 @@
                 </form>*@
 
                 <input @bind="SaqaId" name="SaqaIdTextField" type="text" />
-                <button class="btn btn-sm btn-success" @onclick="@AddTrainingMaterialItemToBasket"> Add to Basket</button>
+                <button class="btn btn-sm btn-success" @onclick="AddTrainingMaterialItemToBasket"> Add to Basket</button>
                 <button class="btn btn-sm btn-danger" @onclick="@(() => ShowBasket = !ShowBasket)">@TheBasket.TrainingMaterialItems.Count <i class="fas fa-shopping-basket" title="Click to View" aria-hidden="true"> </i> Quote Basket</button>
                 <button class="btn btn-sm btn-info"> Submit & Continue</button>
                 </div>

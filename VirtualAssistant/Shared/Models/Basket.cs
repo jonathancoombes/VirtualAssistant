@@ -10,6 +10,15 @@ namespace VirtualAssistant.Shared.Models
 {
     public class Basket : IBasketRepositoryService
     {
+
+        public Basket()
+        {
+            TrainingMaterialItem = new TrainingMaterialItem();
+            TrainingMaterialItems = new List<TrainingMaterialItem>();
+            ElearningItems = new List<ElearningItem>();
+            AccreditationItems = new List<AccreditationItem>();
+        }
+
         public int BasketId { get; set; }
 
         public bool ShowMainMenu { get; set; }
